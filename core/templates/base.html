@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Signin</title>
+    <title>{% block title %}{% endblock %}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -15,8 +15,7 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&family=Jost:wght@500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&family=Jost:wght@500;600;700&display=swap" rel="stylesheet"> 
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -42,75 +41,24 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-auto py-0">
-                        <a href="/" class="nav-item nav-link">Home</a>
+                        <a href="/" class="nav-item nav-link active">Home</a>
                         <a href="/login" class="nav-item nav-link">Login</a>
-                        <a href="/signin" class="nav-item nav-link active">Signup</a>
+                        <a href="/signin" class="nav-item nav-link">Signup</a>
                     </div>
+                    <a href="/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Quick Started</a>
                 </div>
             </nav>
 
             <div class="container-xxl bg-primary hero-header">
+                {% block home_content %}
+                {% endblock %}
             </div>
         </div>
         <!-- Navbar & Hero End -->
-        {% if messages %}
-        {% for message in messages %}
-    
-        <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
-            <strong>{{ message}}</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-
-        {% endfor %}
-        {% endif %}
-
-        <div class="container-xxl py-2">
-            <div class="container py-2 px-lg-5">
-                <div class="wow fadeInUp" data-wow-delay="0.1s">
-                    <p class="section-title text-secondary justify-content-center"><span></span>Signin<span></span></p>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-lg-7">
-                        <div class="wow fadeInUp" data-wow-delay="0.3s">
-                            <form method="post">
-                                {% csrf_token %}
-                                <div class="row g-3">
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
-                                            <label for="name">Your Username</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <input type="email" class="form-control" id="email" name="email" 
-                                                placeholder="Your Email" required>
-                                            <label for="email">Your Email</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <input type="password" class="form-control" id="subject" name="pass" placeholder="Create password" required>
-                                            <label for="subject">Create password</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <input type="password" class="form-control" id="subjec" name="cpass" placeholder="Create password" required>
-                                            <label for="subjec">Confirm password</label>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-12">
-                                        <button class="btn btn-primary w-100 py-3" type="submit" >Submit</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
+        {% block content %}
+        {% endblock %}
+       
         <!-- Footer Start -->
         <div class="container-fluid bg-primary text-light footer wow fadeIn" data-wow-delay="0.1s">
             <div class="container py-5 px-lg-5">
@@ -140,8 +88,8 @@
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="/">AttendEase</a>, All Right Reserved.
-                            Designed By <a class="border-bottom" href="https://htmlcodex.com">htmlcodex.com</a>
+                            &copy; <a class="border-bottom" href="/">AttendEase</a>, All Right Reserved. 
+							Designed By <a class="border-bottom" href="https://htmlcodex.com">htmlcodex.com</a>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">

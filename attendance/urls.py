@@ -21,7 +21,13 @@ from core.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home,name='home'),
-    path('login/',login,name='login'),
+    path('login/',loginn,name='login'),
     path('signin/',signin,name='signin'),
-
+    path('email/',email,name='email'),
+    path('welcome/<str:n>',welcome,name='welcome'),
+    path('logout/',logoutt,name='logout'),
+    path('create_class/',create_class,name='create_class'),
+    path('delete_class/<int:id>',delete_class,name='delete_class'),
+    path('take/<int:id>',take,name='take'),
+    path('view/<int:id>',view,name='view'),
 ]

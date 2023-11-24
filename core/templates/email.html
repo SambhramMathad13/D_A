@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OTP Verification Form</title>
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* Import Google font - Poppins */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+        * {
+            margin: 0px;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .body {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+        }
+
+        :where(.container, form, .input-field, header) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: #abbff7;
+            padding: 30px 65px;
+            border-radius: 12px;
+            row-gap: 20px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container header {
+            height: 65px;
+            width: 65px;
+            background: #4070f4;
+            color: #fff;
+            font-size: 2.5rem;
+            border-radius: 50%;
+        }
+
+        .container h4 {
+            font-size: 1.25rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        form .input-field {
+            flex-direction: row;
+            column-gap: 10px;
+        }
+
+        .input-field input {
+            height: 45px;
+            width: 42px;
+            border-radius: 6px;
+            outline: none;
+            font-size: 1.125rem;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .input-field input:focus {
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+        }
+
+
+
+        form button {
+            margin-top: 25px;
+            width: 100%;
+            color: #fff;
+            font-size: 1rem;
+            border: none;
+            padding: 9px 0;
+            cursor: pointer;
+            border-radius: 6px;
+            background: #3f72ff;
+            transition: all 0.2s ease;
+        }
+
+        form button.active {
+            background: #121213;
+        }
+
+        form button:hover {
+            background: #0e4bf1;
+        }
+    </style>
+</head>
+
+<body>
+          
+    {% if messages %}
+    {% for message in messages %}
+
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>{{ message}}</strong>
+    </div>
+      {% endfor %}
+  {% endif %}
+<div class="body">
+    <div class="container my-5 col-sm-3 col-lg-3 mt-5  ms-3 me-3">
+        <header>
+            <i class="bx bxs-check-shield" style="margin-left: 12px;"></i>
+        </header>
+        <h4>Enter OTP Code</h4>
+        <form method="post" action="/email/">
+            {% csrf_token %}
+            <div class="input-field">
+                <input id="n1" type="number" name="n1" required/>
+                <input id="n2" type="number" name="n2" disabled required/>
+                <input id="n3" type="number" name="n3" disabled required/>
+                <input id="n4" type="number" name="n4" disabled required/>
+                <input id="n5" type="number" name="n5" disabled required/>
+                <input id="n6" type="number" name="n6" disabled required/>
+                <input type="hidden" name="n" value="{{name}}">
+                <input type="hidden" name="e" value="{{email}}">
+                <input type="hidden" name="p" value="{{password}}">
+                <input type="hidden" name="otp" value="{{otp}}">
+            </div>
+            <button type="submit">Verify OTP</button>
+            <p class="mt-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Please check in spam">Did not receive the OTP?</p>
+        </form>
+    </div>
+</div>    
+
+
+    <script>
+        const inputs = document.querySelectorAll("input"),
+            button = document.querySelector("button");
+
+        // iterate over all inputs
+        inputs.forEach((input, index1) => {
+            input.addEventListener("keyup", (e) => {
+                const currentInput = input,
+                    nextInput = input.nextElementSibling,
+                    prevInput = input.previousElementSibling;
+                if (currentInput.value.length > 1) {
+                    currentInput.value = "";
+                    return;
+                }
+                if (nextInput && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
+                    nextInput.removeAttribute("disabled");
+                    nextInput.focus();
+                }
+                if (e.key === "Backspace") {
+                    inputs.forEach((input, index2) => {
+                        if (index1 <= index2 && prevInput) {
+                            input.setAttribute("disabled", true);
+                            input.value = "";
+                            prevInput.focus();
+                        }
+                    });
+                }
+                if (!inputs[5].disabled && inputs[5].value !== "") {
+                    button.classList.add("active");
+                    return;
+                }
+                button.classList.remove("active");
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>AttendEase</title>
+    <title>Home</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -32,8 +32,8 @@
         <!-- Navbar & Hero Start -->
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="index.php" class="navbar-brand p-0">
-                    <h1 class="m-0">AttentEase</h1>
+                <a href="/" class="navbar-brand p-0">
+                    <h1 class="m-0">AttendEase</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -41,24 +41,26 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-auto py-0">
-                        <a href="index.php" class="nav-item nav-link active">Home</a>
-                        <a href="Login.php" class="nav-item nav-link">Login</a>
-                        <a href="Signup.php" class="nav-item nav-link">Signup</a>
-                        <a href="take_attendence.php" class="nav-item nav-link">Take Attendence</a>
-                        <a href="index.php" class="nav-item nav-link">Logout</a>
+                        <a href="/" class="nav-item nav-link active">Home</a>
+                        <a href="/login" class="nav-item nav-link">Login</a>
+                        <a href="/signin" class="nav-item nav-link">Signup</a>
                     </div>
-                    <a href="Login.php" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Get Started</a>
+                    <a href="/login" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Quick Started</a>
                 </div>
             </nav>
 
+
             <div class="container-xxl bg-primary hero-header">
+
                 <div class="container px-lg-5">
                     <div class="row g-5 align-items-end">
                         <div class="col-lg-6 text-center text-lg-start">
                             <h1 class="text-white mb-4 animated slideInDown">A Smart Attendence Taking Platform For Institutions.</h1>
                             <br>
-                            <p class="text-white pb-3 animated slideInDown">Still taking attendence by using pen and paper ? Now no need with a smart attendence system to make the process more and more easy...</p>
-                            <a href="Login.php" class="btn btn-secondary py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Get started</a>
+                            <p class="text-white pb-3 animated slideInDown">Still taking attendence by using pen and paper ? Now no need
+                                with this smart online attendence platform which makes the process more and more easy...</p>
+                            <a href="/signin" class="btn btn-secondary py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Get
+                                started</a>
                             <a href="#steps" class="btn btn-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Steps</a>
                         </div>
                         <div class="col-lg-6 text-center text-lg-start">
@@ -69,37 +71,49 @@
             </div>
         </div>
         <!-- Navbar & Hero End -->
-
-        <div class="wow fadeInUp" data-wow-delay="0.1s" id="steps" >
-            <h1 class="text-center mb-3">Steps Involved</h1>
+        {% if messages %}
+        {% for message in messages %}
+    
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+            <strong>{{ message}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
+        {% endfor %}
+        {% endif %}
+        <div class="wow fadeInUp" data-wow-delay="0.1s" id="steps">
+            <h1 class="text-center mb-3">Steps Involved</h1>
+        </div>
+        
         <!-- Feature Start -->
         <div class="container-xxl py-5">
             <div class="container py-5 px-lg-5">
-                <div class="row g-4" >
+                <div class="row g-4">
                     <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="feature-item bg-light rounded text-center p-4
-                         border-bottom border-success">
+                                 border-bottom border-success">
                             <h5 class="mb-3">Signin/Login</h5>
-                            <p class="m-0">Signup if you dont have an account by creating a password and by Verifying your Email through OTP, else login with your password.</p>
+                            <p class="m-0">Signup if you dont have an account by creating a password and by Verifying your Email
+                                through OTP, else login with your password.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="feature-item bg-light rounded text-center p-4
-                         border-bottom border-success">
+                                 border-bottom border-success">
                             <h5 class="mb-3">Create class</h5>
-                            <p class="m-0">After signin create classes by using your user name and password, and also starting and ending roll numbers of that class.</p>
+                            <p class="m-0">After signin create classes by using your user name and password, and also starting
+                                and ending roll numbers of that class.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="feature-item bg-light rounded text-center p-4
-                         border-bottom border-success">
+                                 border-bottom border-success">
                             <h5 class="mb-3">Take/view attendence</h5>
-                            <p class="m-0">Take the attendence of a class from starting roll to end roll. Click on view attendence to view the attendence.</p>
+                            <p class="m-0">Take the attendence of a class from starting roll to end roll. Click on view
+                                attendence to view the attendence.</p>
                         </div>
                     </div>
-                    
+        
                 </div>
             </div>
         </div>
@@ -122,10 +136,10 @@
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <p class="section-title text-white h5 mb-4">Quick Link<span></span></p>
-                        <a class="btn btn-link" href="Signup.php">Signin</a>
-                        <a class="btn btn-link" href="Login.php">Login</a>
+                        <a class="btn btn-link" href="/signin">Signin</a>
+                        <a class="btn btn-link" href="/login">Login</a>
                         <a class="btn btn-link" href="#steps">Steps</a>
-                        <a class="btn btn-link" href="#">Logout</a>
+                        <a cllogoutass="btn btn-link" href="/logout">Logout</a>
                     </div>
                 </div>
             </div>
@@ -133,12 +147,12 @@
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="index.php">AttendEase</a>, All Right Reserved. 
-							Designed By Using html,css,js and<a class="border-bottom" href="https://htmlcodex.com">Bootstrap</a>
+                            &copy; <a class="border-bottom" href="/">AttendEase</a>, All Right Reserved. 
+							Designed By <a class="border-bottom" href="https://htmlcodex.com">htmlcodex.com</a>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">
-                                <a href="index.php">Home</a>
+                                <a href="/">Home</a>
                                 <a href="#">Cookies</a>
                                 <a href="#">Help</a>
                                 <a href="#">FQAs</a>
